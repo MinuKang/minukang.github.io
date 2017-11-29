@@ -17,7 +17,7 @@
 <meta property="og:description" content="웹 페이지에서 다른 사이트의 기능이나 위젯 등을 가져올 때 주로 iframe을 통해서 필요한 곳에 삽입하게 됩니다. 현재는 사장되어 가는 분위기지만 휴대폰 인증, 주소록 찾기, 아이디 중복확인 등 실시간으로 통신하기 귀찮은 것들을 따로 페이지로 만들어서 window.open 형태로 필요한 정보를 부모 페이지와 주고 받습니다. Browser Object M">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="https://minukang.github.io/images/pasted-30.png">
-<meta property="og:updated_time" content="2017-11-29T08:58:27.438Z">
+<meta property="og:updated_time" content="2017-11-29T10:22:52.256Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="문서 간에 통신하기 (X-Document-Messaging)">
 <meta name="twitter:description" content="웹 페이지에서 다른 사이트의 기능이나 위젯 등을 가져올 때 주로 iframe을 통해서 필요한 곳에 삽입하게 됩니다. 현재는 사장되어 가는 분위기지만 휴대폰 인증, 주소록 찾기, 아이디 중복확인 등 실시간으로 통신하기 귀찮은 것들을 따로 페이지로 만들어서 window.open 형태로 필요한 정보를 부모 페이지와 주고 받습니다. Browser Object M">
@@ -208,7 +208,7 @@
 <h3 id="POST-데이터를-전달할-경우-새창이-아닌-현재창이-전송된다"><a href="#POST-데이터를-전달할-경우-새창이-아닌-현재창이-전송된다" class="headerlink" title="POST 데이터를 전달할 경우 새창이 아닌 현재창이 전송된다."></a><code>POST</code> 데이터를 전달할 경우 새창이 아닌 현재창이 전송된다.</h3><p><code>window.open</code>으로 페이지를 열 경우 기본적으로 <code>GET</code> 방식이지만 <code>&lt;form&gt;</code>의 <code>target</code>을 <code>window.open</code> 객체의 이름을 가르켜 <code>POST</code> 로 전달 할 수 있습니다.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"f"</span> <span class="attr">action</span>=<span class="string">"target.html"</span> <span class="attr">target</span>=<span class="string">"newWindow"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"field"</span> <span class="attr">value</span>=<span class="string">"1234"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> form = <span class="built_in">document</span>.getElementById(<span class="string">'f'</span>)</span></div><div class="line"><span class="javascript"><span class="keyword">var</span> newWindow = <span class="built_in">window</span>.open(<span class="string">'about:blank'</span>, <span class="string">'newWindow'</span>, <span class="string">'width=500,height=500'</span>)</span></div><div class="line"><span class="undefined">form.submit()</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p><code>window.open</code>의 두번째 인자를 통해서 이름을 가질 수 있는데, 이것을 <code>&lt;form&gt;</code>의 <code>target</code>에 지정하게되면 해당 창을 가르키게됩니다.</p>
-<p>하지만 IE에서 이렇게 전달할 경우 새 창이 아닌 현재 창이 전송되는 버그가 있습니다.</p>
+<p>하지만 IE에서 다른 도메인 간에 이렇게 전달할 경우 새 창이 아닌 현재 창이 전송되는 버그가 있습니다.</p>
 <p>해결 방법은 <code>localStorage</code>로 폼 정보를 전달 후 새창을 열고 새창에서 폼을 만들어 전송하는 방법이 있습니다.</p>
 
         </div>
