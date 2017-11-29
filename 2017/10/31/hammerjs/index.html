@@ -17,7 +17,7 @@
 <meta property="og:description" content="모바일이라는 한정된 뷰포트에서 사용자에게 다양한 정보를 제공하기 위해서 비주얼 영역에 Swiper 등의 라이브러리를 사용하곤 했습니다.   하지만 상대적으로 불필요한 기능을 다수 포함하고 있고, 마크업 / 클래스네이밍을 강제하고 있으며(물론 설정을 통해 클래스네임을 변경할 수 있습니다.), 커스터마이징이 어렵습니다. 무엇보다 많은 Swiper 요소가 있을">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="https://minukang.github.io/images/pasted-17.png">
-<meta property="og:updated_time" content="2017-11-03T07:57:56.634Z">
+<meta property="og:updated_time" content="2017-11-29T06:40:53.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="제스쳐 라이브러리 Hammer.js 에 대해 알아보자">
 <meta name="twitter:description" content="모바일이라는 한정된 뷰포트에서 사용자에게 다양한 정보를 제공하기 위해서 비주얼 영역에 Swiper 등의 라이브러리를 사용하곤 했습니다.   하지만 상대적으로 불필요한 기능을 다수 포함하고 있고, 마크업 / 클래스네이밍을 강제하고 있으며(물론 설정을 통해 클래스네임을 변경할 수 있습니다.), 커스터마이징이 어렵습니다. 무엇보다 많은 Swiper 요소가 있을">
@@ -172,12 +172,20 @@
 <p><img src="/images/pasted-17.png" alt="HammerJS의 제스쳐 모음"></p>
 <p><a href="https://hammerjs.github.io/" target="_blank" rel="external">HammerJS 공식 홈페이지</a></p>
 <p><code>Hammer.js</code> 는 화려한 제스쳐 인터렉션이 아닌 단순히 제스쳐를 지정하고, 이벤트 리스너 형태로 사용할수 있도록 만든 라이브러리입니다. 다음의 코드를 보시면 이해하기 쉽습니다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> container = <span class="built_in">document</span>.getElementByid(<span class="string">'container'</span>)</div><div class="line"><span class="keyword">const</span> swiper = <span class="keyword">new</span> Hammer(container)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> container = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>)</div><div class="line"><span class="keyword">var</span> swiper = <span class="keyword">new</span> Hammer(container)</div></pre></td></tr></table></figure>
 <p>먼저 DOM 엘리먼트를 지정하여 <code>Hammer</code> 객체의 인자로 넘깁니다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">swiper.get(<span class="string">'swipe'</span>).set(&#123; <span class="attr">direction</span>: Hammer.DIRECTION_HORIZONTAL &#125;)</div></pre></td></tr></table></figure>
-<p>그리고 <code>Hammer</code> 인스턴스의 <code>swipe</code>를 활성화합니다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">swiper.on(<span class="string">'swipe'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (e.direction) &#123;</div><div class="line">    <span class="keyword">case</span> Hammer.DIRECTION_RIGHT:</div><div class="line">      prev()</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">case</span> Hammer.DIRECTION_LEFT:</div><div class="line">      next()</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">swiper.get(<span class="string">'swipe'</span>).set(&#123; <span class="attr">velocity</span>: <span class="number">0.3</span> &#125;)</div></pre></td></tr></table></figure>
+<p><code>Hammer.prototype.get</code> 으로 해당 제스쳐의 설정객체를 가져와 <code>Hammer.prototype.set</code> 메서드로 세부설정을 할 수 있습니다.</p>
+<p><code>velocity</code> 옵션으로 얼마나 많은 움직임을 주었을때 스와핑할지 선언합니다. 범위는 0 ~ 1이고 기본값은 <code>0.3</code> 입니다. <code>0.5</code> 로 지정할 경우 50%를 땡겨야 스와핑되는것을 의미합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">swiper.get(<span class="string">'swipe'</span>).set(&#123; <span class="attr">direction</span>: Hammer.DIRECTION_HORIZONTAL &#125;)</div></pre></td></tr></table></figure>
+<p><code>direction</code> 옵션으로 특정 방향만 제한할 수 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">swiper.on(<span class="string">'swipe'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (e.direction) &#123;</div><div class="line">    <span class="keyword">case</span> Hammer.DIRECTION_RIGHT:</div><div class="line">      prev()</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">case</span> Hammer.DIRECTION_LEFT:</div><div class="line">      next()</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>활성화 후 <code>Hammer</code> 인스턴스에 이벤트를 등록할 수 있습니다. <code>swipe</code> 이벤트를 등록하게 되면 핸들러의 첫번째 인자인 이벤트 객체에 <code>direction</code> 을 받을 수 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">swiper.on(<span class="string">'swipeleft'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">  next()</div><div class="line">&#125;)</div><div class="line">swiper.on(<span class="string">'swiperight'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">  prev()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>혹은 <code>swipeleft</code>, <code>swiperight</code> 이벤트 등으로 분리하여 작성 할 수 있습니다.</p>
+<script async src="//jsfiddle.net/06gtf08v/2/embed/"></script>
+
+<p>완성본입니다. 스와이프를 통해서 슬라이드를 조작 할 수 있습니다.</p>
 
         </div>
         <footer class="article-footer">
@@ -324,6 +332,26 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2017/11/29/x-document-messaging/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/pasted-30.png)" alt="문서 간에 통신하기 (X-Document-Messaging)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/11/29/x-document-messaging/" class="title">문서 간에 통신하기 (X-Document-Messaging)</a></p>
+                            <p class="item-date"><time datetime="2017-11-29T06:41:33.000Z" itemprop="datePublished">2017-11-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2017/11/02/infinite-value-in-program/" class="thumbnail">
     
     
@@ -401,26 +429,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/07/18/flex-display/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/images/caniuse-flexbox.png)" alt="Flexbox 레이아웃에 대하여 알아보기" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/07/18/flex-display/" class="title">Flexbox 레이아웃에 대하여 알아보기</a></p>
-                            <p class="item-date"><time datetime="2016-07-18T05:34:25.000Z" itemprop="datePublished">2016-07-18</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -433,7 +441,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">아카이브</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11월 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">10월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7월 2016</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">11월 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">10월 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">7월 2016</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
